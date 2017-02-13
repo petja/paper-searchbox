@@ -1,0 +1,124 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+
+<!--
+`paper-searchbox`
+Material Design Search Input
+
+@demo demo/index.html 
+-->
+
+<dom-module id="paper-searchbox">
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                --paper-searchbox-light-background: rgba(255, 255, 255, 0.15);
+                --paper-searchbox-light-color: rgba(255, 255, 255, 0.9);
+                --paper-searchbox-light-background-hover: rgba(255, 255, 255, 0.225);
+                --paper-searchbox-light-color-hover: var(--paper-searchbox-light-color);
+                --paper-searchbox-light-background-raised: #FFF;
+                --paper-searchbox-light-color-raised: #333;
+
+                --paper-searchbox-dark-background: rgba(0, 0, 0, 0.15);
+                --paper-searchbox-dark-color: rgba(0, 0, 0, 0.9);
+                --paper-searchbox-dark-background-hover: rgba(0, 0, 0, 0.225);
+                --paper-searchbox-dark-color-hover: var(--paper-searchbox-dark-color);
+                --paper-searchbox-dark-background-raised: var(--paper-grey-800);
+                --paper-searchbox-dark-color-raised: #FFF;
+            }
+            :host:not([no-hover]) #container:hover {
+                background: var(--paper-searchbox-background-hover, --paper-searchbox-light-background-hover);
+                color: var(--paper-searchbox-color-hover, --paper-searchbox-light-color-hover);
+            }
+            #container {
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+                border-radius: 2px;
+                background: var(--paper-searchbox-background, --paper-searchbox-light-background);
+                color: var(--paper-searchbox-color, --paper-searchbox-light-color);
+                transition: var(--paper-searchbox-transition, 0.25s);
+            }
+            :host[raise-on-active] #container.active, :host[raise-on-value] #container.has-value, :host[raise-forced] #container {
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+                background: var(--paper-searchbox-background-raised, --paper-searchbox-light-background-raised);
+                color: var(--paper-searchbox-color-raised, --paper-searchbox-light-color-raised);
+            }
+            input{
+                background: none;
+                font: inherit;
+                font-size: 1em;
+                border: none;
+                outline: none;
+                margin: 0;
+                padding: 0.25em 0;
+                width: calc(100% - 2.5em);
+                display: inline-block;
+                float: left;
+                color: inherit;
+                cursor: default;
+            }
+            ::-webkit-input-placeholder{
+                color: inherit;
+            }
+            iron-icon {
+                float: left;
+                display: inline-block;
+                width: 1.5em;
+                height: 1.5em;
+                margin-right: 1em;
+            }
+            #pad{
+                padding: 0.5em 1em;
+            }
+        </style>
+
+        <div id="container" on-tap="focus">
+            <div id="pad">
+                <iron-icon icon="search"></iron-icon>
+                <input is="iron-input" id="input" type="search" placeholder="{{placeholder}}" value="{{value::input}}" on-focus="_onFocus" on-blur="_onBlur" on-keyup="_onInput" on-change="_onInput"></iron-input>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+
+            is: 'paper-searchbox',
+
+            properties: {
+                value: {
+                    type: String,
+                    value: '',
+                    notify: true
+                },
+                placeholder: {
+                    type: String,
+                    value: 'Search'
+                }
+            },
+
+            focus: function() {
+                this.$.input.focus();
+            },
+
+            _onFocus: function() {
+                this.$.container.classList.add('active');
+            },
+
+            _onBlur: function() {
+                this.$.container.classList.remove('active');
+            },
+
+            _onInput: function() {
+                var isEmpty = (this.value == '' || this.value == void(0));
+                this.$.container.classList.toggle('has-value', !isEmpty);
+            }
+
+        });
+    </script>
+</dom-module>
