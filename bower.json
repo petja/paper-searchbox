@@ -5,7 +5,8 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
     "iron-input": "PolymerElements/iron-input#^1.0.10",
-    "iron-icon": "PolymerElements/iron-icon#^1.0.12"
+    "iron-icon": "PolymerElements/iron-icon#^1.0.12",
+    "iron-icons": "PolymerElements/iron-icons#^1.2.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
@@ -13,7 +14,7 @@
     "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   },
-    "authors": [
-        "Petja Touru <hello@petja.me>"
-    ]
+  "authors": [
+    "Petja Touru <hello@petja.me>"
+  ]
 }

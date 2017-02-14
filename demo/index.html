@@ -13,35 +13,46 @@
     <link rel="import" href="../paper-searchbox.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
+        .bg-dark, .bg-light, .bg-image {
+            padding: 1em;
+            margin: 0.5em 0;
+        }
         .bg-dark {
             background: #212121;
             color: #fff;
-            padding: 1em;
         }
 
         .bg-light {
             background: #f0f0f0;
             color: #333;
-            padding: 1em;
         }
+
         .bg-light paper-searchbox {
             --paper-searchbox-background: var(--paper-searchbox-dark-background);
             --paper-searchbox-color: var(--paper-searchbox-dark-color);
             --paper-searchbox-background-hover: var(--paper-searchbox-dark-background-hover);
             --paper-searchbox-color-hover: var(--paper-searchbox-dark-color-hover);
         }
+
+        .bg-image {
+            background: url("bg.jpeg");
+            background-size: cover;
+            background-position: center center;
+            color: #FFF;
+        }
     </style>
     </head>
     <body>
         <div class="vertical-section-container centered">
-            <h3>Basic paper-searchbox demo</h3>
+            <h3>Basic usage</h3>
             <demo-snippet>
                 <template>
                     <div class="bg-dark">
                         <paper-searchbox></paper-searchbox>
                     </div>
+
                     <div class="bg-dark">
-                        <paper-searchbox no-hover></paper-searchbox>
+                        <paper-searchbox no-hover placeholder="Hover effect disabled"></paper-searchbox>
                     </div>
                 </template>
             </demo-snippet>
@@ -49,21 +60,11 @@
             <demo-snippet>
                 <template>
                     <div class="bg-dark">
-                        <paper-searchbox raise-on-active></paper-searchbox>
+                        <paper-searchbox raise-on-active placeholder="Cease raising after losing focus"></paper-searchbox>
                     </div>
+
                     <div class="bg-dark">
-                        <paper-searchbox raise-on-value></paper-searchbox>
-                    </div>
-                    <div class="bg-dark">
-                        <paper-searchbox raise-on-active raise-on-value></paper-searchbox>
-                    </div>
-                </template>
-            </demo-snippet>
-            <h3>Light theme</h3>
-            <demo-snippet>
-                <template>
-                    <div class="bg-light">
-                        <paper-searchbox raise-on-active raise-on-value></paper-searchbox>
+                        <paper-searchbox raise-on-active raise-on-value placeholder="If text inside, keep raised"></paper-searchbox>
                     </div>
                 </template>
             </demo-snippet>
@@ -71,7 +72,21 @@
             <demo-snippet>
                 <template>
                     <div class="bg-dark">
-                        <paper-searchbox raise-forced></paper-searchbox>
+                        <paper-searchbox raise-forced no-hover></paper-searchbox>
+                    </div>
+                </template>
+            </demo-snippet>
+            <h3>Theming</h3>
+            <p>Theming is possible with CSS variables</p>
+            <demo-snippet>
+                <template>
+                    <div class="bg-light">
+                        <paper-searchbox raise-on-active raise-on-value placeholder="Light background"></paper-searchbox>
+                    </div>
+
+                    <div class="bg-image">
+                        <h4>Animal Database</h4>
+                        <paper-searchbox raise-forced no-hover icon="chevron-right" placeholder="Search animals"></paper-searchbox>
                     </div>
                 </template>
             </demo-snippet>

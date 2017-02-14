@@ -1,10 +1,20 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 
 <!--
-`paper-searchbox`
-Material Design Search Input
+Let me introduce you `paper-searchbox` which gives you simple Material Design Search Input. No bells or whistles. Try it and love it.
+
+### Styling
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-searchbox-background` | The background color of the searchbox | `rgba(255, 255, 255, 0.15)`
+`--paper-searchbox-color` | The foreground color of the searchbox | `rgba(255, 255, 255, 0.9)`
+`--paper-searchbox-background-hover` | The background color of the searchbox while hovered | `rgba(255, 255, 255, 0.225)`
+`--paper-searchbox-color-hover` | The foreground color of the searchbox while hovered | `--paper-searchbox-color`
+`--paper-searchbox-background-raised` | The background color of the searchbox while raised | `#FFF`
+`--paper-searchbox-color-raised` | The foreground color of the searchbox while raised | `#333`
 
 @demo demo/index.html 
 -->
@@ -63,6 +73,7 @@ Material Design Search Input
             }
             ::-webkit-input-placeholder{
                 color: inherit;
+                opacity: 0.5;
             }
             iron-icon {
                 float: left;
@@ -78,7 +89,7 @@ Material Design Search Input
 
         <div id="container" on-tap="focus">
             <div id="pad">
-                <iron-icon icon="search"></iron-icon>
+                <iron-icon icon="{{icon}}"></iron-icon>
                 <input is="iron-input" id="input" type="search" placeholder="{{placeholder}}" value="{{value::input}}" on-focus="_onFocus" on-blur="_onBlur" on-keyup="_onInput" on-change="_onInput"></iron-input>
                 <div style="clear:both"></div>
             </div>
@@ -91,14 +102,55 @@ Material Design Search Input
             is: 'paper-searchbox',
 
             properties: {
+                /**
+                 * The value of the searchbox
+                 */
                 value: {
                     type: String,
                     value: '',
                     notify: true
                 },
+                /**
+                 * Placeholder text when searchbox is empty
+                 */
                 placeholder: {
                     type: String,
                     value: 'Search'
+                },
+                /**
+                 * Raise searchbox is it's focused
+                 */
+                raiseOnActive: {
+                    type: Boolean,
+                    value: false
+                },
+                /**
+                 * Raise searchbox if it has value
+                 */
+                raiseOnValue: {
+                    type: Boolean,
+                    value: false
+                },
+                /**
+                 * Always raise the searchbox whether it is active or not, or whether is has value or not
+                 */
+                raiseForced: {
+                    type: Boolean,
+                    value: false
+                },
+                /**
+                 * Do not show any effects when hovering the searchbox
+                 */
+                noHover: {
+                    type: Boolean,
+                    value: false
+                },
+                /**
+                 * Change default icon to whatever you like
+                 */
+                icon: {
+                    type: String,
+                    value: 'search'
                 }
             },
 

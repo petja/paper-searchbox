@@ -19,3 +19,5 @@
 ```html
 <paper-searchbox raise-on-active raise-on-value></paper-searchbox>
 ```
+
+Check more demos from `demo`-folder 😊
